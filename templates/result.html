@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result | Heart Disease Risk Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" height="40" class="me-2">
+            <span class="fw-bold">Heart Disease Risk Prediction</span>
+        </a>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+
+                    <!-- Patient Name -->
+                    <h4 class="text-primary mb-2">
+                        Patient Name: <span class="fw-bold">{{ patient_name }}</span>
+                    </h4>
+
+                    <hr>
+
+                    <!-- Risk Summary -->
+                    <div class="text-center my-4">
+                        <div class="risk-percentage">{{ probability }}%</div>
+                        <span class="badge px-4 py-2 fs-6 bg-{{ risk_color }}">
+                            {{ risk_level }}
+                        </span>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="row">
+                        <!-- Risk Probability Chart -->
+                        <div class="col-md-6">
+                            <div class="chart-box">
+                                <h6 class="section-title">Risk Probability</h6>
+                                <canvas id="riskChart"
+                                        data-risk="{{ probability }}">
+                                </canvas>
+                            </div>
+                        </div>
+
+                        <!-- Risk Factors Chart -->
+                        <div class="col-md-6">
+                            <div class="chart-box">
+                                <h6 class="section-title">Top Risk Factors</h6>
+                                <canvas id="factorChart"
+                                        data-labels='{{ contributors | tojson }}'
+                                        data-values='{{ contributors | map("length") | list | tojson }}'>
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Major Risk Factors -->
+                    <div class="mt-4">
+                        <h5 class="text-primary">Major Risk Factors</h5>
+                        <ul class="list-group">
+                            {% for factor in contributors %}
+                                <li class="list-group-item">{{ factor }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Health Recommendations -->
+                    <div class="mt-4">
+                        <h5 class="text-primary">Personalized Health Recommendations</h5>
+                        <ul class="list-group">
+                            {% for rec in recommendations %}
+                                <li class="list-group-item">{{ rec }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/" class="btn btn-outline-secondary">
+                            ← New Prediction
+                        </a>
+
+                        <form action="/download_report" method="POST">
+                            <button type="submit" class="btn btn-success">
+                                Download Report
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center text-muted py-3">
+    <small>Heart Disease Risk Prediction</small>
+</footer>
+
+<!-- Custom JS -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
+

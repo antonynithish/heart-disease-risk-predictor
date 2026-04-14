@@ -1,0 +1,46 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar brand */
+.navbar-brand span {
+    font-size: 1.1rem;
+}
+
+/* Card styling */
+.card {
+    border-radius: 10px;
+}
+
+/* Risk percentage */
+.risk-percentage {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+/* Chart container */
+.chart-box {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 25px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Section headings */
+.section-title {
+    font-weight: 600;
+    color: #0d6efd;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+    font-size: 0.85rem;
+}
+
+/* Buttons */
+.btn-success {
+    padding-left: 25px;
+    padding-right: 25px;
+}
