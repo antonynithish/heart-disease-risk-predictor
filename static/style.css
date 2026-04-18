@@ -2,23 +2,23 @@ body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navbar brand */
+/* Navbar */
 .navbar-brand span {
     font-size: 1.1rem;
 }
 
-/* Card styling */
+/* Card */
 .card {
     border-radius: 10px;
 }
 
-/* Risk percentage */
+/* Risk text */
 .risk-percentage {
     font-size: 3rem;
     font-weight: 700;
 }
 
-/* Chart container */
+/* Charts */
 .chart-box {
     background: #ffffff;
     border-radius: 8px;
@@ -27,7 +27,7 @@ body {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-/* Section headings */
+/* Headings */
 .section-title {
     font-weight: 600;
     color: #0d6efd;
@@ -43,4 +43,46 @@ footer {
 .btn-success {
     padding-left: 25px;
     padding-right: 25px;
+}
+
+/* ---------- HOME BACKGROUND ---------- */
+.home-bg {
+    background: url("/static/images/heart.png") no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+/* Overlay */
+.home-bg::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.75);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Heartbeat animation */
+.home-bg::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,0,0,0.05), transparent 70%);
+    animation: heartbeat 2s infinite;
+    z-index: -2;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0.3; }
+}
+
+/* Input hint */
+.hint {
+    font-size: 12px;
+    color: gray;
 }
