@@ -11,7 +11,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="bg-light">
+
+<body class="home-bg">
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -23,7 +24,7 @@
     </div>
 </nav>
 
-<!-- MAIN CONTAINER -->
+<!-- MAIN -->
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -35,7 +36,7 @@
 
                     <form action="/predict" method="POST">
 
-                        <!-- Patient Name -->
+                        <!-- Name -->
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Patient Name</label>
                             <input type="text" name="patient_name" class="form-control" placeholder="Enter patient name" required>
@@ -46,11 +47,14 @@
                         <h5 class="mb-3 text-primary">Medical Details</h5>
 
                         <div class="row g-3">
+
+                            <!-- Age -->
                             <div class="col-md-6">
                                 <label class="form-label">Age</label>
                                 <input type="number" name="age" class="form-control" required>
                             </div>
 
+                            <!-- Gender -->
                             <div class="col-md-6">
                                 <label class="form-label">Gender</label>
                                 <select name="gender" class="form-select" required>
@@ -60,21 +64,37 @@
                                 </select>
                             </div>
 
+                            <!-- Systolic -->
                             <div class="col-md-6">
                                 <label class="form-label">Systolic BP (mmHg)</label>
-                                <input type="number" name="systolic_bp" class="form-control" required>
+                                <input type="number" name="systolic_bp" class="form-control"
+                                       min="90" max="180"
+                                       placeholder="90 - 180 mmHg"
+                                       title="Enter between 90 and 180" required>
+                                <small class="hint">Range: 90–180 mmHg</small>
                             </div>
 
+                            <!-- Diastolic -->
                             <div class="col-md-6">
                                 <label class="form-label">Diastolic BP (mmHg)</label>
-                                <input type="number" name="diastolic_bp" class="form-control" required>
+                                <input type="number" name="diastolic_bp" class="form-control"
+                                       min="60" max="120"
+                                       placeholder="60 - 120 mmHg"
+                                       title="Enter between 60 and 120" required>
+                                <small class="hint">Range: 60–120 mmHg</small>
                             </div>
 
+                            <!-- Cholesterol -->
                             <div class="col-md-6">
                                 <label class="form-label">Cholesterol (mg/dL)</label>
-                                <input type="number" name="cholesterol" class="form-control" required>
+                                <input type="number" name="cholesterol" class="form-control"
+                                       min="120" max="350"
+                                       placeholder="120 - 350 mg/dL"
+                                       title="Enter between 120 and 350" required>
+                                <small class="hint">Range: 120–350 mg/dL</small>
                             </div>
 
+                            <!-- Diabetes -->
                             <div class="col-md-6">
                                 <label class="form-label">Diabetes</label>
                                 <select name="diabetes" class="form-select" required>
@@ -84,6 +104,7 @@
                                 </select>
                             </div>
 
+                            <!-- Smoker -->
                             <div class="col-md-6">
                                 <label class="form-label">Smoker</label>
                                 <select name="smoker" class="form-select" required>
@@ -93,6 +114,7 @@
                                 </select>
                             </div>
 
+                            <!-- Activity -->
                             <div class="col-md-6">
                                 <label class="form-label">Physical Activity</label>
                                 <select name="physical_activity" class="form-select" required>
@@ -103,14 +125,16 @@
                                 </select>
                             </div>
 
+                            <!-- Family -->
                             <div class="col-md-6">
-                                <label class="form-label">Family History of Heart Disease</label>
+                                <label class="form-label">Family History</label>
                                 <select name="family_history" class="form-select" required>
                                     <option value="">Select</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
                                 </select>
                             </div>
+
                         </div>
 
                         <div class="mt-4 text-center">
@@ -135,4 +159,3 @@
 
 </body>
 </html>
-
