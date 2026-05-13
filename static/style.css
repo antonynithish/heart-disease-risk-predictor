@@ -11,7 +11,7 @@ body {
     min-height: 100vh;
 }
 
-
+/* NAVBAR */
 .navbar {
     background: linear-gradient(90deg, #b30000, #e63946);
     padding: 14px 0;
@@ -56,7 +56,7 @@ body {
     font-weight: 500;
 }
 
-
+/* CARD */
 .card {
     border: none;
     border-radius: 20px;
@@ -64,13 +64,13 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
-
+/* HEADINGS */
 h4, h5 {
     color: #8b0000 !important;
     font-weight: 700;
 }
 
-
+/* FORM */
 .form-control,
 .form-select {
     border-radius: 10px;
@@ -84,7 +84,7 @@ h4, h5 {
     box-shadow: 0 0 0 0.2rem rgba(230,57,70,0.2);
 }
 
-
+/* BUTTON */
 .btn-primary,
 .btn-success {
     background: linear-gradient(90deg, #b30000, #e63946);
@@ -102,13 +102,13 @@ h4, h5 {
     opacity: 0.95;
 }
 
-
+/* Risk text */
 .risk-percentage {
     font-size: 3rem;
     font-weight: 700;
 }
 
-
+/* Charts */
 .chart-box {
     background: #ffffff;
     border-radius: 12px;
@@ -117,13 +117,13 @@ h4, h5 {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-
+/* Footer */
 footer {
     font-size: 0.9rem;
     color: #555;
 }
 
-
+/* Hint text */
 .hint {
     font-size: 12px;
     color: gray;
