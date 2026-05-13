@@ -5,18 +5,18 @@
     <title>Prediction Result | Heart Disease Risk Prediction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap 5 -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-    <!-- Chart.js -->
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-light">
 
-<!-- NAVBAR -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -26,7 +26,7 @@
     </div>
 </nav>
 
-<!-- MAIN CONTENT -->
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-9">
@@ -34,14 +34,14 @@
             <div class="card shadow-sm">
                 <div class="card-body p-4">
 
-                    <!-- Patient Name -->
+                    
                     <h4 class="text-primary mb-2">
                         Patient Name: <span class="fw-bold">{{ patient_name }}</span>
                     </h4>
 
                     <hr>
 
-                    <!-- Risk Summary -->
+
                     <div class="text-center my-4">
                         <div class="risk-percentage">{{ probability }}%</div>
                         <span class="badge px-4 py-2 fs-6 bg-{{ risk_color }}">
@@ -49,9 +49,9 @@
                         </span>
                     </div>
 
-                    <!-- Charts Row -->
+                    
                     <div class="row">
-                        <!-- Risk Probability Chart -->
+                        
                         <div class="col-md-6">
                             <div class="chart-box">
                                 <h6 class="section-title">Risk Probability</h6>
@@ -61,7 +61,7 @@
                             </div>
                         </div>
 
-                        <!-- Risk Factors Chart -->
+                        
                         <div class="col-md-6">
                             <div class="chart-box">
                                 <h6 class="section-title">Top Risk Factors</h6>
@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <!-- Major Risk Factors -->
+                   
                     <div class="mt-4">
                         <h5 class="text-primary">Major Risk Factors</h5>
                         <ul class="list-group">
@@ -83,7 +83,7 @@
                         </ul>
                     </div>
 
-                    <!-- Health Recommendations -->
+                   
                     <div class="mt-4">
                         <h5 class="text-primary">Personalized Health Recommendations</h5>
                         <ul class="list-group">
@@ -93,7 +93,7 @@
                         </ul>
                     </div>
 
-                    <!-- Action Buttons -->
+                   
                     <div class="d-flex justify-content-between mt-4">
                         <a href="/" class="btn btn-outline-secondary">
                             ← New Prediction
@@ -113,12 +113,12 @@
     </div>
 </div>
 
-<!-- Footer -->
+
 <footer class="text-center text-muted py-3">
     <small>Heart Disease Risk Prediction</small>
 </footer>
 
-<!-- Custom JS -->
+
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
