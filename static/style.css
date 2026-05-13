@@ -1,116 +1,130 @@
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background:
+    linear-gradient(rgba(255,255,255,0.96),
+    rgba(255,255,255,0.96)),
+    url("/static/images/bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
-/* Navbar */
-.navbar-brand span {
-    font-size: 1.1rem;
+
+.navbar {
+    background: linear-gradient(90deg, #b30000, #e63946);
+    padding: 14px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Card */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: 0.2s;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.02);
+}
+
+.logo-img {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    background: white;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.app-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+}
+
+.tagline {
+    color: white;
+    font-size: 0.95rem;
+}
+
+.nav-text {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
 .card {
-    border-radius: 10px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.97);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
-/* Risk text */
+
+h4, h5 {
+    color: #8b0000 !important;
+    font-weight: 700;
+}
+
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #d6d6d6;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #e63946;
+    box-shadow: 0 0 0 0.2rem rgba(230,57,70,0.2);
+}
+
+
+.btn-primary,
+.btn-success {
+    background: linear-gradient(90deg, #b30000, #e63946);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 35px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+
 .risk-percentage {
     font-size: 3rem;
     font-weight: 700;
 }
 
-/* Charts */
+
 .chart-box {
     background: #ffffff;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 20px;
     margin-top: 25px;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-/* Headings */
-.section-title {
-    font-weight: 600;
-    color: #0d6efd;
-    margin-bottom: 10px;
-}
 
-/* Footer */
 footer {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    color: #555;
 }
 
-/* Buttons */
-.btn-success {
-    padding-left: 25px;
-    padding-right: 25px;
-}
 
-/* ---------- HOME BACKGROUND ---------- */
-.home-bg {
-    background: url("/static/images/heart.png") no-repeat center center fixed;
-    background-size: cover;
-    position: relative;
-}
-
-/* Overlay */
-.home-bg::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.75);
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
-/* Heartbeat animation */
-.home-bg::after {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255,0,0,0.05), transparent 70%);
-    animation: heartbeat 2s infinite;
-    z-index: -2;
-}
-
-@keyframes heartbeat {
-    0% { transform: scale(1); opacity: 0.3; }
-    50% { transform: scale(1.05); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 0.3; }
-}
-
-/* Input hint */
 .hint {
     font-size: 12px;
     color: gray;
-}
-
-/* 🔥 PERFECT LOGO + TITLE BALANCE */
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-/* Logo */
-.logo-img {
-    height: 52px;
-    width: 52px;
-    object-fit: contain;
-}
-
-/* Title */
-.app-title {
-    font-size: 1.45rem;
-    font-weight: 700;
-    line-height: 1;
-    color: white;
-}
-
-/* Optional smooth hover */
-.navbar-brand:hover {
-    transform: scale(1.02);
-    transition: 0.2s;
 }
