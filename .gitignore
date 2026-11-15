@@ -1,0 +1,30 @@
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+
+# IDE
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+
+# Generated reports
+reports/generated/
+
+# Environment variables and secrets
+.env
+.env.*

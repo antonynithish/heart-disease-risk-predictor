@@ -1,19 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Heart Disease Risk Prediction</title>
+    <title>Explainable Heart Disease Classification</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body class="home-bg">
-
 
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
@@ -26,18 +27,18 @@
 
             <div>
                 <div class="app-title">
-                    Heart Disease Risk Prediction
+                    Heart Disease Classification
                 </div>
 
                 <div class="tagline">
-                    Early Detection, Better Prevention
+                    Logistic Regression with Explainable AI
                 </div>
             </div>
 
         </a>
 
         <div class="nav-text d-none d-md-block">
-            ❤️ Your Health, Our Priority
+            Research & Educational Prototype
         </div>
 
     </div>
@@ -45,135 +46,346 @@
 
 
 <div class="container my-5">
+
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+
+        <div class="col-lg-9">
 
             <div class="card shadow-sm">
+
                 <div class="card-body p-4">
 
-                    <h4 class="mb-3">Patient Information</h4>
+                    <h4 class="mb-3">Patient Data</h4>
+
+                    <div class="alert alert-info">
+                        This application uses the UCI Cleveland Heart Disease
+                        dataset for research and educational purposes.
+                        Enter values from an existing dataset record or
+                        appropriate examination record.
+                    </div>
 
                     <form action="/predict" method="POST">
 
-                        
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">Patient Name</label>
-                            <input type="text" name="patient_name" class="form-control" placeholder="Enter patient name" required>
-                        </div>
-
-                        <hr>
-
-                        <h5 class="mb-3">Medical Details</h5>
+                        <h5 class="mb-3">Medical Information</h5>
 
                         <div class="row g-3">
 
-                            
+                            <!-- Age -->
                             <div class="col-md-6">
-                                <label class="form-label">Age</label>
-                                <input type="number" name="age" class="form-control" required>
+
+                                <label class="form-label">Age (years)</label>
+
+                                <input type="number"
+                                       name="age"
+                                       class="form-control"
+                                       min="29"
+                                       max="77"
+                                       placeholder="29 - 77 years"
+                                       required>
+
+                                <small class="hint">
+                                    Dataset range: 29–77 years
+                                </small>
+
                             </div>
 
-                            
+
+                            <!-- Sex -->
                             <div class="col-md-6">
-                                <label class="form-label">Gender</label>
-                                <select name="gender" class="form-select" required>
+
+                                <label class="form-label">Sex</label>
+
+                                <select name="sex"
+                                        class="form-select"
+                                        required>
+
                                     <option value="">Select</option>
                                     <option value="1">Male</option>
                                     <option value="0">Female</option>
+
                                 </select>
+
                             </div>
 
-                           
+
+                            <!-- Chest Pain -->
                             <div class="col-md-6">
-                                <label class="form-label">Systolic BP (mmHg)</label>
-                                <input type="number" name="systolic_bp" class="form-control"
-                                       min="90" max="180"
-                                       placeholder="90 - 180 mmHg"
-                                       title="Enter between 90 and 180" required>
-                                <small class="hint">Range: 90–180 mmHg</small>
+
+                                <label class="form-label">Chest Pain Type</label>
+
+                                <select name="cp"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">Select</option>
+                                    <option value="1">Typical angina</option>
+                                    <option value="2">Atypical angina</option>
+                                    <option value="3">Non-anginal pain</option>
+                                    <option value="4">Asymptomatic</option>
+
+                                </select>
+
                             </div>
 
-                           
+
+                            <!-- Resting BP -->
                             <div class="col-md-6">
-                                <label class="form-label">Diastolic BP (mmHg)</label>
-                                <input type="number" name="diastolic_bp" class="form-control"
-                                       min="60" max="120"
-                                       placeholder="60 - 120 mmHg"
-                                       title="Enter between 60 and 120" required>
-                                <small class="hint">Range: 60–120 mmHg</small>
+
+                                <label class="form-label">
+                                    Resting Blood Pressure (mmHg)
+                                </label>
+
+                                <input type="number"
+                                       name="trestbps"
+                                       class="form-control"
+                                       min="94"
+                                       max="200"
+                                       placeholder="94 - 200 mmHg"
+                                       required>
+
+                                <small class="hint">
+                                    Dataset range: 94–200 mmHg
+                                </small>
+
                             </div>
 
-                            
+
+                            <!-- Cholesterol -->
                             <div class="col-md-6">
-                                <label class="form-label">Cholesterol (mg/dL)</label>
-                                <input type="number" name="cholesterol" class="form-control"
-                                       min="120" max="350"
-                                       placeholder="120 - 350 mg/dL"
-                                       title="Enter between 120 and 350" required>
-                                <small class="hint">Range: 120–350 mg/dL</small>
+
+                                <label class="form-label">
+                                    Serum Cholesterol (mg/dL)
+                                </label>
+
+                                <input type="number"
+                                       name="chol"
+                                       class="form-control"
+                                       min="126"
+                                       max="564"
+                                       placeholder="126 - 564 mg/dL"
+                                       required>
+
+                                <small class="hint">
+                                    Dataset range: 126–564 mg/dL
+                                </small>
+
                             </div>
 
-                            
+
+                            <!-- Fasting Blood Sugar -->
                             <div class="col-md-6">
-                                <label class="form-label">Diabetes</label>
-                                <select name="diabetes" class="form-select" required>
+
+                                <label class="form-label">
+                                    Fasting Blood Sugar above 120 mg/dL?
+                                </label>
+
+                                <select name="fbs"
+                                        class="form-select"
+                                        required>
+
                                     <option value="">Select</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
+
                                 </select>
+
                             </div>
 
-                            
+
+                            <!-- Resting ECG -->
                             <div class="col-md-6">
-                                <label class="form-label">Smoker</label>
-                                <select name="smoker" class="form-select" required>
+
+                                <label class="form-label">
+                                    Resting ECG Result
+                                </label>
+
+                                <select name="restecg"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">Select</option>
+                                    <option value="0">Normal</option>
+                                    <option value="1">ST-T wave abnormality</option>
+                                    <option value="2">Left ventricular hypertrophy</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Maximum Heart Rate -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Maximum Heart Rate Achieved
+                                </label>
+
+                                <input type="number"
+                                       name="thalach"
+                                       class="form-control"
+                                       min="71"
+                                       max="202"
+                                       placeholder="71 - 202"
+                                       required>
+
+                                <small class="hint">
+                                    Dataset range: 71–202
+                                </small>
+
+                            </div>
+
+
+                            <!-- Exercise Induced Angina -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Exercise-Induced Angina
+                                </label>
+
+                                <select name="exang"
+                                        class="form-select"
+                                        required>
+
                                     <option value="">Select</option>
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
+
                                 </select>
+
                             </div>
 
-                            
+
+                            <!-- Oldpeak -->
                             <div class="col-md-6">
-                                <label class="form-label">Physical Activity</label>
-                                <select name="physical_activity" class="form-select" required>
-                                    <option value="">Select</option>
-                                    <option value="0">Low</option>
-                                    <option value="1">Moderate</option>
-                                    <option value="2">High</option>
-                                </select>
+
+                                <label class="form-label">
+                                    ST Depression (oldpeak)
+                                </label>
+
+                                <input type="number"
+                                       name="oldpeak"
+                                       class="form-control"
+                                       min="0"
+                                       max="6.2"
+                                       step="0.1"
+                                       placeholder="0 - 6.2"
+                                       required>
+
+                                <small class="hint">
+                                    Dataset range: 0–6.2
+                                </small>
+
                             </div>
 
-                            
+
+                            <!-- Slope -->
                             <div class="col-md-6">
-                                <label class="form-label">Family History</label>
-                                <select name="family_history" class="form-select" required>
+
+                                <label class="form-label">
+                                    Slope of Peak Exercise ST Segment
+                                </label>
+
+                                <select name="slope"
+                                        class="form-select"
+                                        required>
+
                                     <option value="">Select</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                    <option value="1">Upsloping</option>
+                                    <option value="2">Flat</option>
+                                    <option value="3">Downsloping</option>
+
                                 </select>
+
+                            </div>
+
+
+                            <!-- Number of Major Vessels -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Number of Major Vessels (ca)
+                                </label>
+
+                                <select name="ca"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">Select</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Thal -->
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Thalassemia Test Result (thal)
+                                </label>
+
+                                <select name="thal"
+                                        class="form-select"
+                                        required>
+
+                                    <option value="">Select</option>
+                                    <option value="3">Normal</option>
+                                    <option value="6">Fixed defect</option>
+                                    <option value="7">Reversible defect</option>
+
+                                </select>
+
                             </div>
 
                         </div>
 
+
                         <div class="mt-4 text-center">
-                            <button type="submit" class="btn btn-primary btn-lg px-5">
-                                Predict Risk
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-lg px-5">
+
+                                Classify
+
                             </button>
+
                         </div>
 
                     </form>
 
+
+                    <hr class="my-4">
+
+                    <p class="text-muted small mb-0">
+
+                        <strong>Disclaimer:</strong>
+                        This is an educational machine learning prototype
+                        based on a historical dataset. Its input ranges
+                        reflect the dataset and are not clinical safety
+                        limits. It is not a medical diagnostic tool and
+                        must not be used to make healthcare decisions.
+
+                    </p>
+
                 </div>
+
             </div>
 
         </div>
+
     </div>
+
 </div>
 
 
 <footer class="text-center text-muted py-3">
-    <small>Heart Disease Risk Prediction</small>
+
+    <small>Explainable Heart Disease Classification</small>
+
 </footer>
 
 </body>
