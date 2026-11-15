@@ -1,51 +1,50 @@
+
 import joblib
 import pandas as pd
-import os
+from pathlib import Path
 
-# -------- Load model & scaler --------
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-model = joblib.load(os.path.join(BASE_DIR, "model", "heart_model.pkl"))
-scaler = joblib.load(os.path.join(BASE_DIR, "model", "scaler.pkl"))
+# Load the trained Cleveland model
+BASE_DIR = Path(__file__).resolve().parent
 
-# -------- Feature order --------
+MODEL_PATH = (
+    BASE_DIR / "models" /
+    "heart_disease_logistic_regression.joblib"
+)
+
+model = joblib.load(MODEL_PATH)
+
+
+# Expected feature order
 FEATURE_ORDER = [
     "age",
-    "gender",
-    "systolic_bp",
-    "diastolic_bp",
-    "cholesterol",
-    "diabetes",
-    "smoker",
-    "physical_activity",
-    "family_history"
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
 ]
 
-# -------- Prediction Function --------
-def predict_heart_risk(input_data):
-    try:
-        # Convert input → DataFrame
-        input_df = pd.DataFrame([input_data])[FEATURE_ORDER]
 
-        # Scale input
-        input_scaled = scaler.transform(input_df)
+def predict_heart_disease(input_data):
 
-        # Get probability (disease class)
-        probability = model.predict_proba(input_scaled)[0][1]
+    # Arrange input values in the correct feature order
+    input_df = pd.DataFrame(
+        [input_data],
+        columns=FEATURE_ORDER
+    )
 
-        # Convert to %
-        risk_percentage = round(probability * 100, 2)
+    # Predict binary classification
+    prediction = int(model.predict(input_df)[0])
 
-        # 🔥 FINAL THRESHOLDS (TUNED FOR YOUR MODEL)
-        if risk_percentage < 30:
-            risk_level = "Low"
-        elif risk_percentage < 80:
-            risk_level = "Medium"
-        else:
-            risk_level = "High"
+    # Get model probability for the positive class
+    probability = model.predict_proba(input_df)[0][1]
 
-        return risk_percentage, risk_level
-
-    except Exception as e:
-        print("Prediction Error:", e)
-        return None, None
+    return prediction, round(float(probability) * 100, 2)

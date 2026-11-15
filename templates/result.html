@@ -1,126 +1,132 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Prediction Result | Heart Disease Risk Prediction</title>
+    <title>Classification Result</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 
-    
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body class="bg-light">
 
+<body class="bg-light">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
+
         <a class="navbar-brand" href="/">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo-img">
-            <span class="app-title">Heart Disease Risk Prediction</span>
+            <img src="{{ url_for('static', filename='images/logo.png') }}"
+                 class="logo-img"
+                 alt="Logo">
+
+            <span class="app-title">
+                Heart Disease Classification
+            </span>
         </a>
+
     </div>
 </nav>
 
 
 <div class="container my-5">
+
     <div class="row justify-content-center">
-        <div class="col-lg-9">
+
+        <div class="col-lg-8">
 
             <div class="card shadow-sm">
+
                 <div class="card-body p-4">
 
-                    
-                    <h4 class="text-primary mb-2">
-                        Patient Name: <span class="fw-bold">{{ patient_name }}</span>
+                    <h4 class="text-primary mb-3">
+                        Classification Result
                     </h4>
 
                     <hr>
 
+                    <div class="text-center my-5">
 
-                    <div class="text-center my-4">
-                        <div class="risk-percentage">{{ probability }}%</div>
-                        <span class="badge px-4 py-2 fs-6 bg-{{ risk_color }}">
-                            {{ risk_level }}
+                        <h5 class="mb-3">
+                            Model Prediction
+                        </h5>
+
+                        <span class="badge bg-{{ result_color }} px-4 py-3 fs-5">
+                            {{ prediction_label }}
                         </span>
+
                     </div>
 
-                    
-                    <div class="row">
-                        
-                        <div class="col-md-6">
-                            <div class="chart-box">
-                                <h6 class="section-title">Risk Probability</h6>
-                                <canvas id="riskChart"
-                                        data-risk="{{ probability }}">
-                                </canvas>
-                            </div>
+
+                    <div class="mt-4">
+
+                        <h5 class="text-primary">
+                            Predicted Probability
+                        </h5>
+
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Model probability for disease-recorded class</span>
+                            <strong>{{ probability }}%</strong>
                         </div>
 
-                        
-                        <div class="col-md-6">
-                            <div class="chart-box">
-                                <h6 class="section-title">Top Risk Factors</h6>
-                                <canvas id="factorChart"
-                                        data-labels='{{ contributors | tojson }}'
-                                        data-values='{{ contributors | map("length") | list | tojson }}'>
-                                </canvas>
+                        <div class="progress" style="height: 22px;">
+
+                            <div class="progress-bar bg-{{ result_color }}"
+                                 role="progressbar"
+                                 style="width: {{ probability }}%;"
+                                 aria-valuenow="{{ probability }}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100">
+                                {{ probability }}%
                             </div>
+
                         </div>
+
                     </div>
 
-                   
-                    <div class="mt-4">
-                        <h5 class="text-primary">Major Risk Factors</h5>
-                        <ul class="list-group">
-                            {% for factor in contributors %}
-                                <li class="list-group-item">{{ factor }}</li>
-                            {% endfor %}
-                        </ul>
+
+                    <div class="alert alert-warning mt-4">
+
+                        <strong>Important Disclaimer</strong>
+
+                        <p class="mb-0 mt-2">
+                            This result is generated by a machine learning
+                            model trained on the historical UCI Cleveland
+                            Heart Disease dataset. It represents a model
+                            classification, not a medical diagnosis or
+                            clinically validated individual risk estimate.
+                            It must not be used for healthcare decisions.
+                        </p>
+
                     </div>
 
-                   
-                    <div class="mt-4">
-                        <h5 class="text-primary">Personalized Health Recommendations</h5>
-                        <ul class="list-group">
-                            {% for rec in recommendations %}
-                                <li class="list-group-item">{{ rec }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
 
-                   
-                    <div class="d-flex justify-content-between mt-4">
-                        <a href="/" class="btn btn-outline-secondary">
-                            ← New Prediction
+                    <div class="text-center mt-4">
+
+                        <a href="/" class="btn btn-outline-primary px-4">
+                            New Prediction
                         </a>
 
-                        <form action="/download_report" method="POST">
-                            <button type="submit" class="btn btn-success">
-                                Download Report
-                            </button>
-                        </form>
                     </div>
 
                 </div>
+
             </div>
 
         </div>
+
     </div>
+
 </div>
 
 
 <footer class="text-center text-muted py-3">
-    <small>Heart Disease Risk Prediction</small>
+    <small>Explainable Heart Disease Classification</small>
 </footer>
-
-
-<script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>
-
